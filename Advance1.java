@@ -78,12 +78,49 @@ class Student{
     
 }
 
+//another way too do the same things without comparator
+
+class Student1 implements Comparable<Student1>
+{
+    public int age;
+    public String name;
+    public Student1(int age, String name) {
+        this.age = age;
+        this.name = name;
+    }
+    @Override
+    public String toString() {
+        return "Student [age=" + age + ", name=" + name + "]";
+    }
+    public int comoareTo(Student1 that){
+        if(this.age>that.age){
+            return 1;
+        }
+        else{
+            return 0;
+        }
+    }
+
+    
+}
 
 public class Advance1{
     public static void main(String[]args){
-        Comparator<Integer>com=new Comparator<Integer>() {
-            public int compare(Integer i,Integer j){
-                if(i%10> j%10){
+        // Comparator<Integer>com=new Comparator<Integer>() {
+        //     public int compare(Integer i,Integer j){
+        //         if(i%10> j%10){
+        //             return 1;
+        //         }
+        //         else{
+        //             return 0;
+        //         }
+        //     }
+        // };
+
+      //  we ahave write the comparator for the user defined data type
+        Comparator<Student>com=new Comparator<Student>() {
+            public int compare(Student i,Student j){
+                if(i.age> j.age){
                     return 1;
                 }
                 else{
@@ -107,6 +144,12 @@ public class Advance1{
        nums1.add(new Student(21,"Ritvik"));
        nums1.add(new Student(22,"Aman"));
        System.out.println(nums1);
+
+       //without comparator it is not possible to sort tge user define datatype
+        
+       Collections.sort(nums1,com);
+      System.out.println("this is after applying the sorting algorithm");
+      System.out.println(nums1);
 
 
     }
